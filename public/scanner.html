@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="js/html5-qrcode.min.js"></script>
+</head>
+<body>
+    
+    <div style="width: 500px" id="qr-reader"></div>
+    <div id="qr-reader-results"></div>
+
+    <script>
+        window.onload = function() {
+            var lastResult;
+
+            function onScanSuccess(decodedText, decodedResult) {
+                if (lastResult !== decodedText) {
+                    lastResult = decodedText;
+                    document.querySelector('#qr-reader-results').innerText = decodedText;
+                }
+            }
+            let html5QrcodeScanner = new Html5QrcodeScanner(
+                "qr-reader", { fps: 10, qrbox: 250 });
+            html5QrcodeScanner.render(onScanSuccess);
+        }
+    </script>
+
+</body>
+</html>

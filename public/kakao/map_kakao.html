@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="/js/common.js"></script>
+</head>
+<body>
+    
+    <div id="map" style="width:100%;height:350px;"></div>
+
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7728684bb39c92f2802312971f9165fd&libraries=services"></script>
+    <script>
+        //CommonJS.Map.searchKakaoMap( document.querySelector('#map'), '경기도 성남시 삼평동 대왕판교로645번길 16' );
+		window.onload = function() {
+			CommonJS.getLocation(fnLocationSuc, fnLocationErr);
+		}
+		
+		function fnLocationSuc(position) {
+			//console.log(position.coords);
+			//console.log(position.coords.latitude);  // 위도
+			//console.log(position.coords.longitude); // 경도
+
+			fnSetCenter( document.querySelector('#map'), 
+				position.coords.latitude, position.coords.longitude );
+		}
+		
+		function fnLocationErr(error) {
+			console.log(error);
+		}
+		
+		function fnSetCenter(mapElement, latitude, longitude) {
+			var container = mapElement;
+			var options = {
+				center: new kakao.maps.LatLng(33.450701, 126.570667),
+				level: 3
+			};
+
+			// 지도를 생성합니다  
+			var map = new kakao.maps.Map(container, options);
+
+			// 이동할 위도 경도 위치를 생성합니다 
+			var moveLatLon = new kakao.maps.LatLng(latitude, longitude);
+    
+			// 지도 중심을 이동 시킵니다
+			map.setCenter(moveLatLon);
+		}
+    </script>
+
+</body>
+</html>

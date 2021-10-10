@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="js/common.js"></script>
+</head>
+<body>
+
+    <div>
+        <button id="btnSms">문자 메시지 화면 이동</button>
+        <button id="btnTel">전화 화면 이동</button>
+    
+        <a href="mailto:daekwang1026@gmail.com">daekwang1026@gmail.com</a>
+    </div>
+    
+
+    <script>
+        window.onload = function() {
+            document.querySelector('#btnSms').addEventListener('click', function() {
+                CommonJS.Mobile.sendSMS(null, '테스트');
+            });
+
+            document.querySelector('#btnTel').addEventListener('click', function() {
+                CommonJS.Mobile.makeAcall('010-9924-3732');
+            });
+        }
+    </script>
+
+</body>
+</html>

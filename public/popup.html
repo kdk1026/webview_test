@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <button id="btnPop">팝업</button>
+
+    <script>
+        window.onload = function() {
+            document.querySelector('#btnPop').addEventListener('click', function() {
+                openPopup('http://www.naver.com', 400, 400);
+            });
+        }
+
+        function openPopup(url, name, width, height) {
+            var _height = Number(height);
+            var _width = Number(width);
+            var _left = (screen.width / 2) - (width / 2);
+            var _top = (screen.height / 2) - (height / 2);
+            var _option = '';
+            _option += 'height=' + _height + ', width=' + _width + ', left=' + _left + ', top=' + _top;
+            _option += 'menubar=no, status=no';
+            _option += 'resizable=no, scrollbars=no, toolbar=no'; // IE only | IE, Firefox, Opera only | IE, Firefox only
+
+            window.open(url, name, _option);   
+        }
+    </script>
+
+</body>
+</html>

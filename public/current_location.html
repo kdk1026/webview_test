@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="js/common.js"></script>
+</head>
+<body>
+
+    <div>
+        <ul>
+            <li>위도 : <span id="latitude"></span></li>
+            <li>경도 : <span id="longitude"></span></li>
+        </ul>
+    </div>
+
+    <script>
+		window.onload = function() {
+			CommonJS.getLocation(fnLocationSuc, fnLocationErr);
+		}
+
+		function fnLocationSuc(position) {
+			console.log(position.coords);
+			//console.log(position.coords.latitude);  // 위도
+			//console.log(position.coords.longitude); // 경도
+            
+            document.querySelector('#latitude').innerText = position.coords.latitude;
+            document.querySelector('#longitude').innerText = position.coords.longitude;
+		}
+		
+		function fnLocationErr(error) {
+			console.log(error);
+		}
+    </script>
+    
+</body>
+</html>

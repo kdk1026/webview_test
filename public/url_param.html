@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h3>?param=값 으로 호출해서 콘솔 확인</h3>    
+
+    <script>
+        /*
+            https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=plusvolts&logNo=221517478504
+
+            location.href 에 왜 unescape 를 했을까요??
+        */
+        var Request = function() {  
+            this.getParameter = function(name) {  
+                var rtnval = '';  
+                var nowAddress = location.href;  
+                var parameters = (nowAddress.slice(nowAddress.indexOf('?') + 1,  
+                        nowAddress.length)).split('&');  
+                for (var i = 0; i < parameters.length; i++) {  
+                    var varName = parameters[i].split('=')[0];  
+                    if (varName.toUpperCase() == name.toUpperCase()) {  
+                        rtnval = parameters[i].split('=')[1];  
+                        break;  
+                    }  
+                }  
+                return rtnval;  
+            }  
+        }  
+        var request = new Request(); 
+    </script>
+    <script>
+        const param = decodeURI(request.getParameter('param'));
+        console.log( 'param is : ', param );
+    </script>
+
+</body>
+</html>

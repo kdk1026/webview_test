@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div>
+        <div>
+            <div>카메라 (사진)</div>
+            <input type="file" name="imgFile" id="imgFile" accept="image/*" capture="camera" />
+            <img src="https://placeimg.com/200/200/any" alt="테스트 이미지" id="mImg" style="width: 200px; height: 200px;" />
+        </div>
+        <div>
+            <div>카메라 | 내 파일 | 파일</div>
+            <input type="file" name="mFile" id="mFile" accept="image/*" />
+            <img src="https://placeimg.com/200/200/any" alt="테스트 이미지" id="mImg2" style="width: 200px; height: 200px;" />
+        </div>
+        <div>
+            <div>카메라 (동영상)</div>
+            <input type="file" name="videoFile" id="videoFile" accept="video/*" capture="camcorder" />
+            <video src="" controls="true" id="mVideo" style="width: 200px; height: 200px;"></video>
+        </div>
+        <div>
+            <div>카메라 캠코더 | 내 파일 | 파일</div>
+            <input type="file" name="videoFile" id="videoFile2" accept="video/*" />
+            <video src="" controls="true" id="mVideo2" style="width: 200px; height: 200px;"></video>
+        </div>
+        <div>
+            <div>음성 녹음</div>
+            <input type="file" name="audioFile" id="audioFile" accept="audio/*" capture="microphone" />
+            <audio src="" controls="true" id="mAudio"></audio>
+        </div>
+        <div>
+            <div>음성 녹음 | 내 파일 | 파일</div>
+            <input type="file" name="audioFile" id="audioFile2" accept="audio/*" />
+            <audio src="" controls="true" id="mAudio2"></audio>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('load', function(){
+            document.querySelector('#imgFile').addEventListener('change', function(e) {
+                const fileUrl = window.URL.createObjectURL(e.target.files[0]);
+                document.querySelector('#mImg').setAttribute("src", fileUrl);
+            });
+
+            document.querySelector('#mFile').addEventListener('change', function(e) {
+                const fileUrl = window.URL.createObjectURL(e.target.files[0]);
+                document.querySelector('#mImg2').setAttribute("src", fileUrl);
+            });
+
+            document.querySelector('#videoFile').addEventListener('change', function(e) {
+                const fileUrl = window.URL.createObjectURL(e.target.files[0]);
+                document.querySelector('#mVideo').setAttribute("src", fileUrl);
+            });
+
+            document.querySelector('#videoFile2').addEventListener('change', function(e) {
+                const fileUrl = window.URL.createObjectURL(e.target.files[0]);
+                document.querySelector('#mVideo2').setAttribute("src", fileUrl);
+            });
+
+            document.querySelector('#audioFile').addEventListener('change', function(e) {
+                const fileUrl = window.URL.createObjectURL(e.target.files[0]);
+                document.querySelector('#mAudio').setAttribute("src", fileUrl);
+            });
+
+            document.querySelector('#audioFile2').addEventListener('change', function(e) {
+                const fileUrl = window.URL.createObjectURL(e.target.files[0]);
+                document.querySelector('#mAudio2').setAttribute("src", fileUrl);
+            });
+        });
+    </script>
+
+</body>
+</html>
