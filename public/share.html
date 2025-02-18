@@ -22,7 +22,11 @@
                     console.log('콘텐츠가 성공적으로 공유되었습니다.');
                 })
                 .catch((error) => {
-                    alert('콘텐츠 공유 중 오류 발생: ' + error);
+                    if (error.name === 'AbortError') {
+                        alert('사용자가 공유를 취소했습니다.');
+                    } else {
+                        alert('콘텐츠 공유 중 오류 발생: ' + error);
+                    }
                 });
             } else {
                 alert('이 브라우저는 Web Share API를 지원하지 않습니다.\n클립보드에 복사합니다.');
