@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <button id="btnShare">공유하기</button>
+
+    <script>
+        const share = (title, text) => {
+            if ( navigator.share ) {
+                // 크롬 최신 PC 버전 지원
+                navigator.share({
+                    title: title || '',
+                    text: text || '',
+                    url: window.location.href
+                })
+                .then(() => {
+                    console.log('콘텐츠가 성공적으로 공유되었습니다.');
+                })
+                .catch((error) => {
+                    alert('콘텐츠 공유 중 오류 발생: ' + error);
+                });
+            } else {
+                alert('이 브라우저는 Web Share API를 지원하지 않습니다.\n클립보드에 복사합니다.');
+
+                let clipboardContent = window.location.href;
+                if (title) clipboardContent = `${title}\n${clipboardContent}`;
+                if (text) clipboardContent = `${text}\n${clipboardContent}`;
+
+                navigator.clipboard.writeText(clipboardContent)
+                .then(() => {
+                    alert('클립보드에 복사되었습니다.');
+                })
+                .catch((error) => {
+                    alert('클립보드 복사 중 오류 발생: ' + error);
+                });
+            }
+        };
+
+        document.querySelector('#btnShare').addEventListener('click', function() {
+            share();
+        });
+    </script>
+
+</body>
+</html>
